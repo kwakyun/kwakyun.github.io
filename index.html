@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>디브리 · Portfolio</title>
+<meta name="description" content="디브리(곽윤직) — 백엔드에서 블록체인 컨트랙트 개발로 향하는 부산대학교 컴퓨터공학 전공생의 포트폴리오" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/index.min.css" />
+<style>
+  :root {
+    --paper: #f4f1ea;
+    --paper-2: #ebe6db;
+    --ink: #17181a;
+    --ink-2: #4a4c50;
+    --ink-3: #85878b;
+    --line: #d6d0c3;
+    --accent: #0f766e;
+    --accent-soft: #d5ebe7;
+    --rec: #d23c2a;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --max: 1080px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+  a { color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  .mono { font-family: var(--mono); }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  nav .brand { font-family: var(--mono); font-weight: 700; font-size: 14px; text-decoration: none; letter-spacing: .02em; }
+  nav .brand span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 22px; }
+  nav ul a { text-decoration: none; font-size: 14px; color: var(--ink-2); }
+  nav ul a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav ul { gap: 14px; } nav ul li.hide-sm { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 96px 0 72px; border-bottom: 1px solid var(--line); }
+  .hero .tag {
+    font-family: var(--mono); font-size: 13px; color: var(--ink-3);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+  }
+  .hero .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--rec); box-shadow: 0 0 0 4px #d23c2a22; }
+  .hero h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.08; font-weight: 800; letter-spacing: -0.035em; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p.lede { margin-top: 26px; max-width: 640px; font-size: 18px; color: var(--ink-2); }
+  .hero .meta { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    padding: 11px 18px; border: 1.5px solid var(--ink); border-radius: 999px;
+    text-decoration: none; transition: background .15s, color .15s;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* ---------- sections ---------- */
+  section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 180px 1fr; gap: 24px; margin-bottom: 48px; align-items: baseline; }
+  .sec-head .num { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+  .sec-head h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; }
+  .sec-head p { grid-column: 2; color: var(--ink-2); margin-top: 8px; }
+  @media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; gap: 6px; } .sec-head p { grid-column: 1; } }
+
+  /* ---------- interests ---------- */
+  .track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1.5px solid var(--ink); border-radius: 18px; overflow: hidden; }
+  .track > div { padding: 28px 26px; border-right: 1px solid var(--line); background: #fbfaf6; }
+  .track > div:last-child { border-right: 0; background: var(--ink); color: var(--paper); }
+  .track .when { font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
+  .track > div:last-child .when { color: #8fd3c9; }
+  .track h3 { font-size: 20px; margin: 10px 0 14px; letter-spacing: -0.02em; }
+  .track ul { list-style: none; display: grid; gap: 8px; font-size: 15px; }
+  .track li { display: flex; gap: 8px; }
+  .track li::before { content: "→"; font-family: var(--mono); color: var(--accent); }
+  .track > div:last-child li::before { color: #8fd3c9; }
+  @media (max-width: 860px) { .track { grid-template-columns: 1fr; } .track > div { border-right: 0; border-bottom: 1px solid var(--line); } }
+
+  /* ---------- featured project ---------- */
+  .feature { border: 1.5px solid var(--ink); border-radius: 22px; overflow: hidden; background: #fbfaf6; }
+  .feature .top { display: grid; grid-template-columns: 1.05fr 1fr; }
+  .feature .intro { padding: 40px 38px; display: flex; flex-direction: column; }
+  .feature .intro .kicker { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: .06em; }
+  .feature h3 { font-size: clamp(30px, 4vw, 42px); font-weight: 800; letter-spacing: -0.03em; margin: 8px 0 14px; line-height: 1.15; }
+  .feature .intro p { color: var(--ink-2); }
+  .feature .intro .links { margin-top: auto; padding-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .feature .media { background: var(--ink); display: flex; align-items: center; justify-content: center; position: relative; min-height: 320px; }
+  .feature .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .feature .media .cap { position: absolute; left: 14px; bottom: 12px; font-family: var(--mono); font-size: 11px; color: #fff; background: #0009; padding: 4px 9px; border-radius: 6px; }
+  @media (max-width: 860px) { .feature .top { grid-template-columns: 1fr; } .feature .media { min-height: 220px; } }
+
+  .facts { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1.5px solid var(--ink); }
+  .fact { padding: 30px 38px; border-bottom: 1px solid var(--line); }
+  .fact:nth-child(odd) { border-right: 1px solid var(--line); }
+  .fact h4 { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .fact p, .fact li { font-size: 15.5px; color: var(--ink); }
+  .fact ul { list-style: none; display: grid; gap: 10px; }
+  .fact li { padding-left: 16px; position: relative; }
+  .fact li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; background: var(--accent); border-radius: 1px; }
+  .fact.wide { grid-column: 1 / -1; border-right: 0; }
+  @media (max-width: 760px) { .facts { grid-template-columns: 1fr; } .fact { padding: 26px 24px; border-right: 0 !important; } .feature .intro { padding: 30px 24px; } }
+
+  .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .role { border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; background: var(--paper); }
+  .role .lbl { font-family: var(--mono); font-size: 11.5px; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 5px; display: inline-block; margin-bottom: 8px; }
+  .role p { font-size: 14.5px; color: var(--ink-2); line-height: 1.65; }
+  .role b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 760px) { .role-grid { grid-template-columns: 1fr; } }
+
+  table.stack { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.stack th, table.stack td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.stack th { font-family: var(--mono); font-weight: 500; font-size: 12px; color: var(--ink-3); width: 130px; letter-spacing: .04em; }
+  table.stack td.t { font-weight: 600; width: 34%; }
+  table.stack td.r { color: var(--ink-2); }
+  @media (max-width: 760px) { table.stack th { width: 90px; } table.stack td.r { display: none; } }
+
+  .result-box { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .result-box > div { border-radius: 14px; padding: 18px 20px; font-size: 14.5px; }
+  .result-box .ok { background: var(--accent-soft); }
+  .result-box .issue { background: #f6dfd8; }
+  .result-box .next { background: var(--paper-2); grid-column: 1 / -1; }
+  .result-box b { display: block; font-family: var(--mono); font-size: 12px; font-weight: 500; margin-bottom: 6px; letter-spacing: .04em; }
+  @media (max-width: 760px) { .result-box { grid-template-columns: 1fr; } }
+
+  /* ---------- secondary project ---------- */
+  .second { margin-top: 36px; border: 1.5px solid var(--ink); border-radius: 22px; padding: 38px; background: #fbfaf6; display: grid; grid-template-columns: 1fr 1.25fr; gap: 40px; }
+  .second h3 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; margin: 8px 0 12px; }
+  .second .kicker { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .second .badge { display: inline-block; font-size: 12.5px; padding: 3px 10px; border: 1px solid var(--ink); border-radius: 999px; margin-bottom: 14px; }
+  .second p { color: var(--ink-2); font-size: 15.5px; }
+  .second .links { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
+  .chip { font-family: var(--mono); font-size: 12px; padding: 5px 10px; border-radius: 7px; background: var(--paper-2); border: 1px solid var(--line); }
+  .ideas { list-style: none; display: grid; gap: 12px; counter-reset: idea; }
+  .ideas li { counter-increment: idea; display: grid; grid-template-columns: 34px 1fr; gap: 6px; font-size: 15px; }
+  .ideas li::before { content: counter(idea, decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: var(--accent); padding-top: 3px; }
+  .ideas li b { font-weight: 600; }
+  .ideas li span { color: var(--ink-2); }
+  @media (max-width: 860px) { .second { grid-template-columns: 1fr; padding: 28px 24px; gap: 24px; } }
+
+  /* ---------- next ---------- */
+  .next-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card { border: 1.5px solid var(--ink); border-radius: 18px; padding: 30px 28px; background: #fbfaf6; display: flex; flex-direction: column; }
+  .card .kicker { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+  .card h3 { font-size: 21px; margin: 8px 0 12px; letter-spacing: -0.02em; line-height: 1.35; }
+  .card p { color: var(--ink-2); font-size: 15px; }
+  .card .links { margin-top: auto; padding-top: 22px; }
+  .card.dash { border-style: dashed; }
+  @media (max-width: 760px) { .next-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- resume ---------- */
+  .resume { display: flex; justify-content: space-between; align-items: center; gap: 28px; flex-wrap: wrap; background: var(--ink); color: var(--paper); border-radius: 22px; padding: 44px 42px; }
+  .resume h2 { font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -0.03em; }
+  .resume p { color: #b9bbbf; margin-top: 6px; }
+  .resume .btn { border-color: var(--paper); color: var(--paper); }
+  .resume .btn.solid { background: var(--paper); color: var(--ink); }
+  .resume .btn.solid:hover { background: #8fd3c9; border-color: #8fd3c9; }
+  .resume .btn:hover { background: var(--paper); color: var(--ink); }
+
+  footer { padding: 40px 0 56px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">debri<span>.</span>dev</a>
+    <ul>
+      <li class="hide-sm"><a href="#interests">관심 분야</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li class="hide-sm"><a href="#next">다음 계획</a></li>
+      <li><a href="#resume">이력서</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="tag">곽윤직 · 부산대학교 컴퓨터공학전공 3학년</div>
+    <h1>안녕하세요,<br/><em>디브리</em>입니다.</h1>
+    <p class="lede">
+      말하기 시험처럼 기준이 흐릿한 문제를 데이터와 AI로 또렷하게 만드는 일을 좋아합니다.
+      지금은 <b>백엔드 엔지니어링</b>을 다지고 있고, 그 위에서 <b>블록체인 스마트 컨트랙트 개발자</b>로 나아가려 합니다.
+    </p>
+    <div class="meta">
+      <a class="btn solid" href="https://github.com/kwakyun" target="_blank" rel="noopener">GitHub · kwakyun ↗</a>
+      <a class="btn" href="#projects">대표 프로젝트 보기</a>
+      <a class="btn" href="resume.pdf" download>이력서 PDF ↓</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ INTERESTS ============ -->
+<section id="interests">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">01 / 관심 분야</div>
+      <div>
+        <h2>백엔드에서 출발해 온체인으로</h2>
+        <p>단기 목표로 서버 기반을 단단히 하고, 각 언어 생태계를 블록체인과 연결해 장기 목표로 이어갑니다.</p>
+      </div>
+    </div>
+    <div class="track">
+      <div>
+        <div class="when">Short-term · Backend</div>
+        <h3>Java / Spring</h3>
+        <ul>
+          <li>엔터프라이즈 백엔드 기본기</li>
+          <li>Hyperledger Fabric 연동</li>
+          <li>Web3j로 이더리움 연결</li>
+        </ul>
+      </div>
+      <div>
+        <div class="when">Short-term · Backend</div>
+        <h3>Node.js · Python</h3>
+        <ul>
+          <li>TypeScript 백엔드 → Solidity 생태계</li>
+          <li>FastAPI로 RAG 시스템 학습</li>
+          <li>pgvector 기반 의미 검색</li>
+        </ul>
+      </div>
+      <div>
+        <div class="when">Long-term goal</div>
+        <h3>Blockchain Contract Dev</h3>
+        <ul>
+          <li>Ethereum · Solana</li>
+          <li>Solidity 스마트 컨트랙트</li>
+          <li>Hyperledger Fabric</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">02 / 대표 프로젝트</div>
+      <div>
+        <h2>직접 쓰고 있는 서비스를 만듭니다</h2>
+        <p>대표 프로젝트 OpicTutor와, 하루 만에 초기 기업을 만든 해커톤 프로젝트입니다.</p>
+      </div>
+    </div>
+
+    <!-- OpicTutor -->
+    <article class="feature">
+      <div class="top">
+        <div class="intro">
+          <div class="kicker">FEATURED · AI 교육 플랫폼 · 팀 프로젝트</div>
+          <h3>오픽 튜터<br/>OpicTutor</h3>
+          <p>
+            진행자 <b>린(Rin)</b>의 영어 질문을 듣고 음성으로 답하면, 실전과 같은 8문항 모의 인터뷰 뒤에
+            ACTFL 루브릭과 RAG를 근거로 예상 등급(NL–AL)과 맞춤 교정 카드를 돌려주는 OPIc 학습 플랫폼입니다.
+          </p>
+          <div class="links">
+            <a class="btn solid" href="https://github.com/fruit8067/OpicTutor-With-AI#-demo--preview" target="_blank" rel="noopener">데모 영상 ↗</a>
+            <a class="btn" href="https://github.com/fruit8067/OpicTutor-With-AI" target="_blank" rel="noopener">소스 코드 ↗</a>
+            <a class="btn" href="https://github.com/fruit8067/OpicTutor-With-AI/commits/main/?author=kwakyun" target="_blank" rel="noopener">내 커밋 ↗</a>
+          </div>
+        </div>
+        <div class="media">
+          <img src="https://raw.githubusercontent.com/fruit8067/OpicTutor-With-AI/main/images/demo.gif" alt="OpicTutor 시연 화면: 로그인, 마이크 점검, 모의 인터뷰, 결과 리포트" loading="lazy" />
+          <span class="cap">● REC  demo.gif</span>
+        </div>
+      </div>
+
+      <div class="facts">
+        <div class="fact">
+          <h4>문제 정의</h4>
+          <p>
+            OPIc은 말하기 시험이라 채점 기준이 애매하게 느껴지고, 내 답변이 어느 수준인지
+            언제 어디서나 객관적으로 피드백받기 어렵습니다.
+          </p>
+        </div>
+        <div class="fact">
+          <h4>대상 사용자 &amp; 핵심 경험</h4>
+          <p>
+            OPIc·토스 영어 등 말하기 시험 수험생. AI가 답변의 객관적 수준을 진단하고,
+            대화형 피드백으로 답변을 한 단계씩 끌어올려 목표 점수에 닿도록 돕습니다.
+          </p>
+        </div>
+
+        <div class="fact wide">
+          <h4>내 역할 — 기획·RAG 데이터·TTS·프론트엔드 전 화면</h4>
+          <div class="role-grid">
+            <div class="role">
+              <span class="lbl">설계 · 협업 구조</span>
+              <p><b>요구사항 v2와 API 명세</b>를 작성하고, AI 에이전트 병렬 개발을 위해 에이전트별 프롬프트·계약(contracts)·머지 전략·<b>PC 3대별 런북</b>을 설계했습니다. 이후 채점 항목·태그·FACT 서술형 피드백을 담은 v3로 갱신했습니다.</p>
+            </div>
+            <div class="role">
+              <span class="lbl">RAG 코퍼스</span>
+              <p>NL–AL 채점용 <b>루브릭 9종, 업그레이드 패턴 8종, 문제은행 30문항</b>, 그리고 12문항 × 9등급의 <b>파일럿 대조 세트</b>(원문·STT 버전)와 빌드·검증 스크립트를 구축했습니다.</p>
+            </div>
+            <div class="role">
+              <span class="lbl">TTS 파이프라인</span>
+              <p>Colab OmniVoice로 진행자 음성 <b>242개(약 43분)</b>를 생성·반입하고, 텍스트 해시 검증·세션 준비 핸들러·내보내기/가져오기 스크립트, 진행자 캐릭터와 오디오 플레이어를 만들었습니다.</p>
+            </div>
+            <div class="role">
+              <span class="lbl">프론트엔드 M2</span>
+              <p>로그인→설정→준비→시험→채점 중→결과 <b>전체 화면</b>을 구현했습니다. 서버 확인 전에는 넘어가지 않는 문항 상태 머신, 업로드 재전송(1·2·4초), 새로고침 복구, 근거 3단 결과 리포트, 키보드·aria-live 접근성까지 다뤘습니다.</p>
+            </div>
+            <div class="role">
+              <span class="lbl">품질 · 버그</span>
+              <p>빠른 연속 재생 시 이전 재생의 AbortError가 다음 재생을 실패시키던 경쟁 조건, 음성 재등록 시 SameFileError 등을 Playwright 완주 테스트에서 찾아 고쳤습니다. pytest와 빌드 검증을 함께 통과시켰습니다.</p>
+            </div>
+            <div class="role">
+              <span class="lbl">문서 · 데모</span>
+              <p>README에 데모 미리보기(GIF·MP4)와 핵심 흐름 요약을 정리했습니다. 커밋마다 AI 활용 여부를 <b>AI-assisted</b>로 명시해 기여 과정을 투명하게 남겼습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fact wide">
+          <h4>기술 스택</h4>
+          <table class="stack">
+            <tr><th>Frontend</th><td class="t">React 19 · TypeScript · React Router v7 · Vite 8 · Tailwind CSS</td><td class="r">SPA 라우팅, MediaRecorder 녹음, 2초 폴링 상태 동기화</td></tr>
+            <tr><th>Backend</th><td class="t">Python 3.12 · FastAPI · Pydantic v2 · Uvicorn</td><td class="r">REST API v1, 스트리밍 업로드 가드, 세션 상태 머신·소유권 검증</td></tr>
+            <tr><th>Database</th><td class="t">PostgreSQL 16 · pgvector (VECTOR 3072) · psycopg 3</td><td class="r">트랜잭션 저장, FOR UPDATE SKIP LOCKED 작업 큐, 정확 코사인 검색</td></tr>
+            <tr><th>Speech &amp; AI</th><td class="t">faster-whisper (small.en) · LLM/Embedding API · TTS</td><td class="r">로컬 STT, 발화 지표 계측, RAG 문맥 검색, ACTFL 루브릭 JSON 평가</td></tr>
+            <tr><th>Quality</th><td class="t">oxlint · tsc -b · pytest / TestClient</td><td class="r">정적 분석 0 warnings, 계약 검증, 인증·격리 통합 테스트</td></tr>
+          </table>
+        </div>
+
+        <div class="fact wide" style="border-bottom:0">
+          <h4>결과</h4>
+          <div class="result-box">
+            <div class="ok"><b>✓ 동작 중</b>서비스에 만족하며 실제로 사용하고 있습니다. 지금은 로컬 환경에서 운영합니다.</div>
+            <div class="issue"><b>! 해결할 문제</b>ngrok 무료 플랜으로 외부 공개를 시도했지만, 2분가량 긴 음성을 연속으로 보내면 처리량 한도에 걸려 병목이 생기고 사용자가 다시 녹음해야 하는 문제가 있었습니다.</div>
+            <div class="next"><b>→ 다음 단계</b>자체 도메인을 붙여 누구나 쉽게 쓸 수 있도록 배포하는 것이 목표입니다. 공학작문과발표 수업에서 알게 된 GitHub 학생 플랜과 GitHub Actions를 활용한 배포를 시도할 계획입니다.</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 전공한시간 -->
+    <article class="second">
+      <div>
+        <div class="kicker">HACKATHON · 1:1 학습 매칭</div>
+        <h3>전공한시간</h3>
+        <span class="badge">[HUSS] 2026 AI START-UP SPRINT — 하루 만에 초기 기업 만들기</span>
+        <p>
+          같은 캠퍼스(또는 편입 준비) 튜터와 학습자를 이어 주는 1:1 학습 매칭 서비스입니다.
+          수업 탐색, 추천 이유 제시, 협의·예약, 교육자·운영자 화면까지 하루 안에 구현했습니다.
+        </p>
+        <p style="margin-top:12px"><b style="color:var(--ink)">역할</b> — Agent AI를 활용해 서비스를 개발했습니다.</p>
+        <p style="margin-top:12px"><b style="color:var(--ink)">결과</b> — 원하는 품질까지는 닿지 못했지만, 개선하고 발전시킬 방향을 많이 찾았습니다. 우선 파일과 코드 정리부터 진행합니다.</p>
+        <div class="links">
+          <a class="btn" href="https://github.com/kwakyun/campus-major-tutoring-mvp" target="_blank" rel="noopener">소스 코드 ↗</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="mono" style="font-size:12px;font-weight:500;color:var(--ink-3);letter-spacing:.08em">기술</h4>
+        <div class="chips">
+          <span class="chip">Next.js · React · TS</span>
+          <span class="chip">NestJS</span>
+          <span class="chip">FastAPI · Pydantic</span>
+          <span class="chip">PostgreSQL · pgvector</span>
+          <span class="chip">Supabase</span>
+          <span class="chip">작업 큐 + Python worker</span>
+          <span class="chip">서비스별 개별 배포</span>
+        </div>
+        <h4 class="mono" style="font-size:12px;font-weight:500;color:var(--ink-3);letter-spacing:.08em;margin-bottom:12px">발전 아이디어</h4>
+        <ol class="ideas">
+          <li><div><b>AI 출제 당일 퀴즈</b> <span>— 커리큘럼에 맞는 시험을 AI가 등록하고 당일 공개해 실력 허위 등록을 막습니다.</span></div></li>
+          <li><div><b>수요 분석(RAG)</b> <span>— 학습자가 원하는 과목·분야를 분석해 튜터에게 알려 줍니다. 유료 튜터에게는 요청 항목과 소비 트렌드를 제공합니다.</span></div></li>
+          <li><div><b>블록체인 경력 증명서</b> <span>— 과외 이력을 경력으로 쓸 수 있도록 증명서를 발급하고, 후기·테스트 결과에 따라 브론즈·실버·골드 토큰 뱃지를 부여합니다.</span></div></li>
+          <li><div><b>영지식 증명 신원 확인</b> <span>— 민감 정보를 드러내지 않고 "원하는 학교·학과 학생"임을 대학과 연계해 증명합니다.</span></div></li>
+          <li><div><b>커리큘럼 자동 생성</b> <span>— 유료 서비스로 제공합니다.</span></div></li>
+        </ol>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ NEXT ============ -->
+<section id="next">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">03 / 다음 계획</div>
+      <div>
+        <h2>준비 중인 프로젝트</h2>
+        <p>관심 분야인 블록체인·엣지 컴퓨팅과 AI 모델을 직접 다뤄 보려는 다음 단계입니다.</p>
+      </div>
+    </div>
+    <div class="next-grid">
+      <div class="card dash">
+        <div class="kicker">TODO · Blockchain × Edge Computing</div>
+        <h3>이동 중인 사용자의 ZK proving 작업을 엣지로 offloading하고 migration하기</h3>
+        <p>무거운 영지식 증명 생성을 단말 대신 가까운 엣지 서버에 맡기고, 사용자가 이동하면 작업을 다음 엣지로 옮기는 구조를 연구합니다.</p>
+      </div>
+      <div class="card dash">
+        <div class="kicker">TODO · AI Model</div>
+        <h3>AI 안경(스마트 글래스) 식별 모델 — ai-glasses-detection</h3>
+        <p>AI 안경(스마트 안경)을 식별하는 모델을 직접 구축하는 프로젝트입니다. 현재 계획을 세우는 단계입니다.</p>
+        <div class="links"><a class="btn" href="https://github.com/kwakyun/ai-glasses-detection/blob/main/docs/ai-glasses-detection_project_plan.md" target="_blank" rel="noopener">프로젝트 계획서 ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESUME ============ -->
+<section id="resume" style="border-bottom:0">
+  <div class="wrap">
+    <div class="resume">
+      <div>
+        <h2>이력서를 한 장으로 받아 보세요</h2>
+        <p>관심 분야, 프로젝트, 기술 스택을 정리한 PDF입니다.</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn solid" href="resume.pdf" download>resume.pdf ↓</a>
+        <a class="btn" href="https://github.com/kwakyun" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 디브리 (곽윤직) · kwakyun.github.io</span>
+    <span>Built with AI assistance (Claude) · 공학작문과 발표 과제 #6</span>
+  </div>
+</footer>
+
+</body>
+</html>
